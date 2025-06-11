@@ -299,7 +299,7 @@ def try_with_last_five(state: AgentState) -> AgentState:
         elif isinstance(msg, AIMessage):
             context_prompt += f"AI: {msg.content}\n"
     
-    context_prompt += f"\nCan you answer the current question based on the recent history and current conversation? If you can answer confidently, provide the answer. If you need more information from older conversations, just say 'NEED_MORE_INFO'."
+    context_prompt += f"\nCan you answer the current question ONLY using information from the recent chat history and current conversation provided above? If the question is about topics NOT discussed in this conversation history (like general facts, definitions, or unrelated topics), say 'NEED_MORE_INFO'. Only answer if the information is explicitly present in the conversation history."
     
     response = llm.invoke([HumanMessage(content=context_prompt)])
     
@@ -325,7 +325,7 @@ def search_and_respond(state: AgentState) -> AgentState:
     vector_results = search_vector_database(current_query)
     
     # Check if vector search found relevant information
-    if not vector_results or "No additional relevant information found" in vector_results:
+    if not vector_results or "No additional relevant information found" in vector_results or len(vector_results.strip()) < 50:
         print("🤔 Vector database search insufficient, will use general knowledge...")
         state["needs_general_knowledge"] = True
         return state
