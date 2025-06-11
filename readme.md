@@ -73,13 +73,13 @@ I made 6 conversations prior to this test. Gave the database several facts. I ex
 
 These are the chat history stored in the database.
 
-![Chat history Stored in Postgres](./images/chat_history_postgres.png)
+![Chat history Stored in Postgres](/images/chat_history_postgres.png)
 
 #### Chat History and Vector Database (ChromaDB)
 
 I trained everry conversation that is in the postgres database for RAG search.
 
-![RAG Training](./images/rag_training.png)
+![RAG Training](/images/rag_training.png)
 
 
 #### Test Hierarchical Context Retrieval
@@ -92,7 +92,7 @@ I tested the hierarchical context retrieval with three queries:
 
 The results are as follows:
 
-![Unit Test](./images/unit_test.png)
+![Unit Test](/images/unit_test.png)
 
 
 We were able to answer all of the queries with the hierarchical context retrieval. LangGraph was able to route the query to the correct context retrieval method.
